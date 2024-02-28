@@ -22,7 +22,7 @@ This circuit is able to work up to 1kW power.
 
 ### Open questions
 - Is a battery management system really necessary?
-- 
+
 My first action was to start developing a battery management system as it seemed important to protect the battery.
 Then I started to wonder if it is really necessary as there are groups of cells in parallel with a big capacity, and as the current is modest compared to the original application, an electric car.
 
