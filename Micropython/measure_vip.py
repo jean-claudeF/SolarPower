@@ -3,8 +3,6 @@ import time
 from OLED_03 import OLED
 from pwmc import PWMc
 
-
-
 class Measure_VIP():
     '''Read V, I from adc0, adc1 and calculate P
        values can also b printed and displayed on OLED
@@ -101,8 +99,6 @@ def measure_loop():
         meas.print_oled()
         time.sleep(1)
     
-
-
 if __name__ == "__main__":
     measure_loop()
     
