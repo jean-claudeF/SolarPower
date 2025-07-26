@@ -1,0 +1,894 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Raspi_Pico:Pico U4
+U 1 1 657F41DD
+P 5375 1750
+F 0 "U4" H 5375 2965 50  0000 C CNN
+F 1 "Pico" H 5375 2874 50  0000 C CNN
+F 2 "RPi_Pico:RPi_Pico_SMD_TH" V 5375 1750 50  0001 C CNN
+F 3 "" H 5375 1750 50  0001 C CNN
+	1    5375 1750
+	1    0    0    -1  
+$EndComp
+Text GLabel 7425 1200 2    50   Input ~ 0
++3V3
+$Comp
+L power:GNDD #PWR014
+U 1 1 657F41F8
+P 6775 6025
+F 0 "#PWR014" H 6775 5775 50  0001 C CNN
+F 1 "GNDD" H 6779 5870 50  0001 C CNN
+F 2 "" H 6775 6025 50  0001 C CNN
+F 3 "" H 6775 6025 50  0001 C CNN
+	1    6775 6025
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky D3
+U 1 1 657F4203
+P 6350 900
+F 0 "D3" H 6350 1116 50  0000 C CNN
+F 1 "D_Schottky" H 6350 1025 50  0000 C CNN
+F 2 "" H 6350 900 50  0001 C CNN
+F 3 "~" H 6350 900 50  0001 C CNN
+	1    6350 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6075 900  6200 900 
+Text GLabel 7400 900  2    50   Input ~ 0
++5V
+Text Notes 6900 775  0    50   ~ 0
++5V from Battery power \nover DC-DC converter\n
+$Comp
+L Switch:SW_Push SW1
+U 1 1 657F420F
+P 6500 3025
+F 0 "SW1" V 6454 3173 50  0000 L CNN
+F 1 "Page 1" V 6545 3173 50  0000 L CNN
+F 2 "" H 6500 3225 50  0001 C CNN
+F 3 "~" H 6500 3225 50  0001 C CNN
+	1    6500 3025
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2
+U 1 1 657F4215
+P 7075 3025
+F 0 "SW2" V 7029 3173 50  0000 L CNN
+F 1 "STOP" V 7120 3173 50  0000 L CNN
+F 2 "" H 7075 3225 50  0001 C CNN
+F 3 "~" H 7075 3225 50  0001 C CNN
+	1    7075 3025
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6500 2825 6500 2700
+Wire Wire Line
+	6500 2700 6075 2700
+Wire Wire Line
+	7075 2825 7075 2600
+Wire Wire Line
+	7075 2600 6075 2600
+$Comp
+L Device:R R4
+U 1 1 657F4229
+P 8375 5675
+F 0 "R4" V 8168 5675 50  0000 C CNN
+F 1 "1k" V 8259 5675 50  0000 C CNN
+F 2 "" V 8305 5675 50  0001 C CNN
+F 3 "~" H 8375 5675 50  0001 C CNN
+	1    8375 5675
+	0    1    1    0   
+$EndComp
+$Comp
+L Transistor_BJT:2N2219 Q2
+U 1 1 657F4230
+P 8825 5675
+F 0 "Q2" H 9015 5721 50  0000 L CNN
+F 1 "2N2219" H 9015 5630 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-39-3" H 9025 5600 50  0001 L CIN
+F 3 "http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF" H 8825 5675 50  0001 L CNN
+	1    8825 5675
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR013
+U 1 1 657F4236
+P 8925 5925
+F 0 "#PWR013" H 8925 5675 50  0001 C CNN
+F 1 "GNDD" H 8929 5770 50  0001 C CNN
+F 2 "" H 8925 5925 50  0001 C CNN
+F 3 "" H 8925 5925 50  0001 C CNN
+	1    8925 5925
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8925 5875 8925 5925
+$Comp
+L Diode:1N4007 D4
+U 1 1 657F423E
+P 8925 5275
+F 0 "D4" V 8879 5354 50  0000 L CNN
+F 1 "1N4007" V 8970 5354 50  0000 L CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 8925 5100 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 8925 5275 50  0001 C CNN
+	1    8925 5275
+	0    1    1    0   
+$EndComp
+Text GLabel 9075 4800 2    50   Input ~ 0
++12V
+$Comp
+L Motor:Motor_DC M1
+U 1 1 657F4246
+P 10450 5150
+F 0 "M1" H 10608 5146 50  0000 L CNN
+F 1 "Motor_DC" H 10608 5055 50  0000 L CNN
+F 2 "" H 10450 5060 50  0001 C CNN
+F 3 "~" H 10450 5060 50  0001 C CNN
+	1    10450 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Driver_FET:IR2101 U3
+U 1 1 65801DF7
+P 5525 5625
+F 0 "U3" H 5850 5625 50  0000 C CNN
+F 1 "IR2101" H 5950 5725 50  0000 C CNN
+F 2 "" H 5525 5625 50  0001 C CIN
+F 3 "https://www.infineon.com/dgdl/ir2101.pdf?fileId=5546d462533600a4015355c7a755166c" H 5525 5625 50  0001 C CNN
+	1    5525 5625
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR08
+U 1 1 65801DFD
+P 5525 6250
+F 0 "#PWR08" H 5525 6000 50  0001 C CNN
+F 1 "GNDD" H 5529 6095 50  0001 C CNN
+F 2 "" H 5525 6250 50  0001 C CNN
+F 3 "" H 5525 6250 50  0001 C CNN
+	1    5525 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C1
+U 1 1 65801E03
+P 5000 5300
+F 0 "C1" H 5118 5346 50  0000 L CNN
+F 1 "47uF" H 5118 5255 50  0000 L CNN
+F 2 "" H 5038 5150 50  0001 C CNN
+F 3 "~" H 5000 5300 50  0001 C CNN
+	1    5000 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5525 5125 5000 5125
+Wire Wire Line
+	5000 5125 5000 5150
+$Comp
+L power:GNDD #PWR05
+U 1 1 65801E0B
+P 5000 5450
+F 0 "#PWR05" H 5000 5200 50  0001 C CNN
+F 1 "GNDD" H 5004 5295 50  0001 C CNN
+F 2 "" H 5000 5450 50  0001 C CNN
+F 3 "" H 5000 5450 50  0001 C CNN
+	1    5000 5450
+	1    0    0    -1  
+$EndComp
+Text GLabel 4625 4250 2    50   Input ~ 0
++12V
+$Comp
+L power:GNDD #PWR07
+U 1 1 65801E17
+P 5150 6250
+F 0 "#PWR07" H 5150 6000 50  0001 C CNN
+F 1 "GNDD" H 5154 6095 50  0001 C CNN
+F 2 "" H 5150 6250 50  0001 C CNN
+F 3 "" H 5150 6250 50  0001 C CNN
+	1    5150 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5225 5625 5150 5625
+$Comp
+L Device:R R2
+U 1 1 65801E1E
+P 4425 5725
+F 0 "R2" V 4218 5725 50  0000 C CNN
+F 1 "1k" V 4309 5725 50  0000 C CNN
+F 2 "" V 4355 5725 50  0001 C CNN
+F 3 "~" H 4425 5725 50  0001 C CNN
+	1    4425 5725
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4575 5725 4800 5725
+$Comp
+L Device:Q_NPN_CBE Q1
+U 1 1 65801E25
+P 4700 5950
+F 0 "Q1" H 4891 5996 50  0000 L CNN
+F 1 "BC547" H 4891 5905 50  0000 L CNN
+F 2 "" H 4900 6050 50  0001 C CNN
+F 3 "~" H 4700 5950 50  0001 C CNN
+	1    4700 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR04
+U 1 1 65801E2B
+P 4800 6250
+F 0 "#PWR04" H 4800 6000 50  0001 C CNN
+F 1 "GNDD" H 4804 6095 50  0001 C CNN
+F 2 "" H 4800 6250 50  0001 C CNN
+F 3 "" H 4800 6250 50  0001 C CNN
+	1    4800 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 65801E31
+P 3200 5950
+F 0 "R1" V 2993 5950 50  0000 C CNN
+F 1 "10k" V 3084 5950 50  0000 C CNN
+F 2 "" V 3130 5950 50  0001 C CNN
+F 3 "~" H 3200 5950 50  0001 C CNN
+	1    3200 5950
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 65801E37
+P 4500 6100
+F 0 "R3" H 4675 6100 50  0000 R CNN
+F 1 "4k7" H 4430 6145 50  0000 R CNN
+F 2 "" V 4430 6100 50  0001 C CNN
+F 3 "~" H 4500 6100 50  0001 C CNN
+	1    4500 6100
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GNDD #PWR03
+U 1 1 65801E3D
+P 4500 6250
+F 0 "#PWR03" H 4500 6000 50  0001 C CNN
+F 1 "GNDD" H 4504 6095 50  0001 C CNN
+F 2 "" H 4500 6250 50  0001 C CNN
+F 3 "" H 4500 6250 50  0001 C CNN
+	1    4500 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5525 6125 5525 6250
+Wire Wire Line
+	5150 5625 5150 6250
+Wire Wire Line
+	4800 6150 4800 6250
+$Comp
+L Diode:BZD27Cxx D2
+U 1 1 65801E49
+P 2850 5950
+F 0 "D2" H 2850 5734 50  0000 C CNN
+F 1 "ZD27" H 2850 5825 50  0000 C CNN
+F 2 "Diode_SMD:D_SMF" H 2850 5775 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/85153/bzd27series.pdf" H 2850 5950 50  0001 C CNN
+	1    2850 5950
+	1    0    0    1   
+$EndComp
+$Comp
+L Diode:BZD27Cxx D1
+U 1 1 65801E4F
+P 2475 5950
+F 0 "D1" H 2475 5734 50  0000 C CNN
+F 1 "ZD27" H 2475 5825 50  0000 C CNN
+F 2 "Diode_SMD:D_SMF" H 2475 5775 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/85153/bzd27series.pdf" H 2475 5950 50  0001 C CNN
+	1    2475 5950
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3050 5950 3000 5950
+Wire Wire Line
+	2700 5950 2625 5950
+Wire Wire Line
+	4800 5750 4800 5725
+Connection ~ 4800 5725
+Wire Wire Line
+	4800 5725 5225 5725
+Text Notes 4000 5600 0    50   ~ 0
+PWM\n
+Text Notes 3425 5650 2    50   ~ 0
+Idle state protection\n
+Wire Wire Line
+	6075 1200 7425 1200
+Wire Wire Line
+	6075 2400 7900 2400
+Wire Wire Line
+	9075 4800 8925 4800
+$Comp
+L Connector:Conn_01x03_Male J3
+U 1 1 6580EC4D
+P 9725 5200
+F 0 "J3" H 9850 4925 50  0000 R CNN
+F 1 " " H 9697 5223 50  0000 R CNN
+F 2 "" H 9725 5200 50  0001 C CNN
+F 3 "~" H 9725 5200 50  0001 C CNN
+	1    9725 5200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8925 4800 8925 4975
+Wire Wire Line
+	8925 5425 8925 5450
+$Comp
+L Connector:Conn_01x03_Female J4
+U 1 1 658100BD
+P 9775 5200
+F 0 "J4" H 9667 4875 50  0000 C CNN
+F 1 " " H 9667 4966 50  0000 C CNN
+F 2 "" H 9775 5200 50  0001 C CNN
+F 3 "~" H 9775 5200 50  0001 C CNN
+	1    9775 5200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9975 5100 10125 5100
+Wire Wire Line
+	10125 5100 10125 4950
+Wire Wire Line
+	10125 4950 10450 4950
+Wire Wire Line
+	9975 5300 10125 5300
+Wire Wire Line
+	10125 5300 10125 5450
+Wire Wire Line
+	10125 5450 10450 5450
+Wire Wire Line
+	9525 5300 9525 5450
+Wire Wire Line
+	9525 5450 8925 5450
+Connection ~ 8925 5450
+Wire Wire Line
+	8925 5450 8925 5475
+Wire Wire Line
+	9525 5100 9525 4975
+Wire Wire Line
+	9525 4975 8925 4975
+Connection ~ 8925 4975
+Wire Wire Line
+	8925 4975 8925 5125
+$Comp
+L DC_DC_converter:DCDC U5
+U 1 1 65822558
+P 3750 4650
+F 0 "U5" H 3750 5117 50  0000 C CNN
+F 1 "DCDC_5_to_12V" H 3750 5026 50  0000 C CNN
+F 2 "Converter_DCDC:Converter_DCDC_TRACO_TMR-2xxxxWI_THT" H 3900 4300 50  0001 C CNN
+F 3 "https://www.tracopower.com/products/tmr2wi.pdf" H 3850 4150 50  0001 C CNN
+	1    3750 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L DC_DC_converter:DCDC U1
+U 1 1 65823299
+P 1925 4650
+F 0 "U1" H 1925 5117 50  0000 C CNN
+F 1 "DCDC_48_to_5V" H 1925 5026 50  0000 C CNN
+F 2 "Converter_DCDC:Converter_DCDC_TRACO_TMR-2xxxxWI_THT" H 2075 4300 50  0001 C CNN
+F 3 "https://www.tracopower.com/products/tmr2wi.pdf" H 2025 4150 50  0001 C CNN
+	1    1925 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x04_Female J5
+U 1 1 65831169
+P 7175 5925
+F 0 "J5" H 7075 6175 50  0000 L CNN
+F 1 "Control" H 7000 5575 50  0000 L CNN
+F 2 "" H 7175 5925 50  0001 C CNN
+F 3 "~" H 7175 5925 50  0001 C CNN
+	1    7175 5925
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector:Conn_01x05_Female J6
+U 1 1 65831C76
+P 9725 1650
+F 0 "J6" H 9575 2025 50  0000 L CNN
+F 1 "Measure_VI" H 9575 1300 50  0000 L CNN
+F 2 "" H 9725 1650 50  0001 C CNN
+F 3 "~" H 9725 1650 50  0001 C CNN
+	1    9725 1650
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector:Conn_01x03_Female J7
+U 1 1 658324E4
+P 9725 2475
+F 0 "J7" H 9600 2725 50  0000 L CNN
+F 1 "Temperature" H 9500 2225 50  0000 L CNN
+F 2 "" H 9725 2475 50  0001 C CNN
+F 3 "~" H 9725 2475 50  0001 C CNN
+	1    9725 2475
+	1    0    0    1   
+$EndComp
+$Comp
+L power:GNDD #PWR01
+U 1 1 6583307F
+P 1100 5075
+F 0 "#PWR01" H 1100 4825 50  0001 C CNN
+F 1 "GNDD" H 1104 4920 50  0001 C CNN
+F 2 "" H 1100 5075 50  0001 C CNN
+F 3 "" H 1100 5075 50  0001 C CNN
+	1    1100 5075
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR09
+U 1 1 6583BFA8
+P 3225 5100
+F 0 "#PWR09" H 3225 4850 50  0001 C CNN
+F 1 "GNDD" H 3229 4945 50  0001 C CNN
+F 2 "" H 3225 5100 50  0001 C CNN
+F 3 "" H 3225 5100 50  0001 C CNN
+	1    3225 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4850 3225 4850
+Wire Wire Line
+	3225 4850 3225 5100
+Text Notes 9225 2975 0    50   ~ 0
+Connections to power circuit:\n
+Text Notes 9850 2575 0    50   ~ 0
++3V\nDATA\nGND
+Text Notes 9825 1825 0    50   ~ 0
++5V\nVI2\nNC\nVU2\nGND\n
+Text Notes 7275 6000 0    50   ~ 0
+VBAT\nNC\nGATE\nGND\n
+Wire Wire Line
+	6975 6025 6775 6025
+$Comp
+L power:GNDD #PWR016
+U 1 1 6584C49A
+P 9325 2575
+F 0 "#PWR016" H 9325 2325 50  0001 C CNN
+F 1 "GNDD" H 9329 2420 50  0001 C CNN
+F 2 "" H 9325 2575 50  0001 C CNN
+F 3 "" H 9325 2575 50  0001 C CNN
+	1    9325 2575
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9525 2575 9325 2575
+Text GLabel 1225 3875 0    50   Input ~ 0
+VBAT
+Wire Wire Line
+	6975 5725 6725 5725
+Text GLabel 3100 4250 2    50   Input ~ 0
++5V
+$Comp
+L Connector:Conn_01x04_Female J2
+U 1 1 6586254D
+P 2925 2025
+F 0 "J2" H 2775 1750 50  0000 C CNN
+F 1 "OLED" H 2825 2275 50  0000 C CNN
+F 2 "" H 2925 2025 50  0001 C CNN
+F 3 "~" H 2925 2025 50  0001 C CNN
+	1    2925 2025
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR06
+U 1 1 658652B8
+P 3200 2325
+F 0 "#PWR06" H 3200 2075 50  0001 C CNN
+F 1 "GNDD" H 3204 2170 50  0001 C CNN
+F 2 "" H 3200 2325 50  0001 C CNN
+F 3 "" H 3200 2325 50  0001 C CNN
+	1    3200 2325
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3475 1900 3475 2125
+Wire Wire Line
+	3475 2125 3125 2125
+Wire Wire Line
+	3400 1800 3400 2225
+Wire Wire Line
+	3400 2225 3125 2225
+Wire Wire Line
+	3125 2025 3200 2025
+Wire Wire Line
+	3200 2025 3200 2325
+Text GLabel 3275 1700 2    50   Input ~ 0
++3V3
+Wire Wire Line
+	3125 1925 3175 1925
+Wire Wire Line
+	3175 1925 3175 1700
+Wire Wire Line
+	3175 1700 3275 1700
+Text Notes 4325 1775 0    50   ~ 0
+SDA
+Text Notes 4325 2000 0    50   ~ 0
+SCL
+$Comp
+L Connector:Conn_01x04_Male J1
+U 1 1 658742DF
+P 2900 2025
+F 0 "J1" H 3025 1750 50  0000 R CNN
+F 1 " " H 2872 1908 50  0000 R CNN
+F 2 "" H 2900 2025 50  0001 C CNN
+F 3 "~" H 2900 2025 50  0001 C CNN
+	1    2900 2025
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 2025 2700 2025
+Wire Wire Line
+	2200 2325 2650 2325
+Wire Wire Line
+	2650 2325 2650 2225
+Wire Wire Line
+	2650 2225 2700 2225
+Wire Wire Line
+	2700 1925 2700 1425
+Wire Wire Line
+	2700 1425 2200 1425
+$Comp
+L oled:SH1106 U2
+U 1 1 6586156B
+P 2200 1925
+F 0 "U2" H 1870 2021 50  0000 R CNN
+F 1 "SH1106" H 1870 1930 50  0000 R CNN
+F 2 "" H 2200 1425 50  0001 C CNN
+F 3 "" H 2150 1025 50  0001 C CNN
+	1    2200 1925
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 2125 2700 2125
+Wire Wire Line
+	2650 1925 2650 2125
+Wire Wire Line
+	2600 1925 2650 1925
+Wire Wire Line
+	8350 1700 8350 1550
+Wire Wire Line
+	8350 1550 9525 1550
+Wire Wire Line
+	6075 1700 8350 1700
+Wire Wire Line
+	8150 1600 8150 1750
+Wire Wire Line
+	8150 1750 9525 1750
+Wire Wire Line
+	6075 1600 8150 1600
+Wire Wire Line
+	4675 2700 4375 2700
+Wire Wire Line
+	4375 2700 4375 3550
+Wire Wire Line
+	4375 3550 8250 3550
+Wire Wire Line
+	8250 3550 8250 2475
+Wire Wire Line
+	8250 2475 9525 2475
+Text GLabel 9450 2375 0    50   Input ~ 0
++3V3
+Wire Wire Line
+	9525 2375 9450 2375
+Text Notes 4800 3500 0    50   ~ 0
+TEMPERATURE DATA\n
+Text Notes 6750 2850 0    50   ~ 0
+OLED\n
+Text Notes 5900 3300 0    50   ~ 0
+OLED\npage selector \n0, 1, 2
+Text Notes 9650 5750 0    50   ~ 0
+Ventilator\n
+$Comp
+L Device:Jumper JP1
+U 1 1 66A140B8
+P 4000 2900
+F 0 "JP1" V 3954 2812 50  0000 R CNN
+F 1 "WDT" V 4045 2812 50  0000 R CNN
+F 2 "" H 4000 2900 50  0001 C CNN
+F 3 "~" H 4000 2900 50  0001 C CNN
+	1    4000 2900
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4675 2600 4000 2600
+$Comp
+L power:GNDD #PWR017
+U 1 1 66A1C2EF
+P 4000 3200
+F 0 "#PWR017" H 4000 2950 50  0001 C CNN
+F 1 "GNDD" H 4004 3045 50  0001 C CNN
+F 2 "" H 4000 3200 50  0001 C CNN
+F 3 "" H 4000 3200 50  0001 C CNN
+	1    4000 3200
+	1    0    0    -1  
+$EndComp
+Text Notes 2750 3000 0    50   ~ 0
+JP1 WDT\nclosed: Watchdog active\nopen: Watchdog inactive\n(use this for reprogramming)
+$Comp
+L power:GNDD #PWR010
+U 1 1 66A1D33F
+P 4575 2775
+F 0 "#PWR010" H 4575 2525 50  0001 C CNN
+F 1 "GNDD" H 4579 2620 50  0001 C CNN
+F 2 "" H 4575 2775 50  0001 C CNN
+F 3 "" H 4575 2775 50  0001 C CNN
+	1    4575 2775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4675 2500 4575 2500
+Wire Wire Line
+	4575 2500 4575 2775
+$Comp
+L Connector:Conn_01x03_Male J8
+U 1 1 66A226D0
+P 4300 900
+F 0 "J8" H 3975 925 50  0000 C CNN
+F 1 "UART0" H 3925 850 50  0000 C CNN
+F 2 "" H 4300 900 50  0001 C CNN
+F 3 "~" H 4300 900 50  0001 C CNN
+	1    4300 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 800  4675 800 
+Wire Wire Line
+	4500 900  4675 900 
+Wire Wire Line
+	4500 1000 4675 1000
+Text Notes 4150 825  0    50   ~ 0
+TX\n
+Text Notes 4150 925  0    50   ~ 0
+RX
+Text Notes 4100 1025 0    50   ~ 0
+GND
+Wire Wire Line
+	3400 1800 4675 1800
+Wire Wire Line
+	3475 1900 4675 1900
+$Comp
+L Connector:Conn_01x03_Male J9
+U 1 1 66A411A8
+P 4300 1400
+F 0 "J9" H 4025 1425 50  0000 C CNN
+F 1 "UART1" H 3975 1350 50  0000 C CNN
+F 2 "" H 4300 1400 50  0001 C CNN
+F 3 "~" H 4300 1400 50  0001 C CNN
+	1    4300 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 1300 4675 1300
+Wire Wire Line
+	4500 1400 4675 1400
+Wire Wire Line
+	4500 1500 4675 1500
+Text Notes 4175 1350 0    50   ~ 0
+TX\n
+Text Notes 4175 1450 0    50   ~ 0
+RX
+Text Notes 4125 1550 0    50   ~ 0
+GND
+Wire Wire Line
+	6075 2500 7600 2500
+Wire Wire Line
+	7600 2500 7600 3225
+Wire Wire Line
+	7600 3225 7075 3225
+Connection ~ 7075 3225
+Wire Wire Line
+	6500 3225 7075 3225
+$Comp
+L Switch:SW_Push SW3
+U 1 1 66A61BBA
+P 7600 2000
+F 0 "SW3" V 7554 2148 50  0000 L CNN
+F 1 "Reset" V 7645 2148 50  0000 L CNN
+F 2 "" H 7600 2200 50  0001 C CNN
+F 3 "~" H 7600 2200 50  0001 C CNN
+	1    7600 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7600 2200 7600 2300
+Wire Wire Line
+	6075 1800 7600 1800
+Wire Wire Line
+	6500 900  7250 900 
+Wire Wire Line
+	9525 1450 9300 1450
+Wire Wire Line
+	9300 1450 9300 1050
+Wire Wire Line
+	9300 1050 7250 1050
+Wire Wire Line
+	7250 1050 7250 900 
+Connection ~ 7250 900 
+Wire Wire Line
+	7250 900  7400 900 
+Wire Wire Line
+	6075 1500 8075 1500
+Wire Wire Line
+	8075 1500 8075 1850
+Wire Wire Line
+	8075 1850 9525 1850
+Wire Wire Line
+	8525 5675 8625 5675
+$Comp
+L Device:Jumper JP2
+U 1 1 66A8D37B
+P 7100 1900
+F 0 "JP2" H 7100 2125 50  0000 C CNN
+F 1 "MasterSlave" H 7100 2050 50  0000 C CNN
+F 2 "" H 7100 1900 50  0001 C CNN
+F 3 "~" H 7100 1900 50  0001 C CNN
+	1    7100 1900
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	6075 2000 6300 2000
+Wire Wire Line
+	6300 2000 6300 2300
+Wire Wire Line
+	6300 2300 7400 2300
+Wire Wire Line
+	7400 1900 7400 2300
+Connection ~ 7400 2300
+Wire Wire Line
+	7400 2300 7600 2300
+Wire Wire Line
+	6075 1900 6800 1900
+Text Notes 8875 3450 0    50   ~ 0
+JP2:\nSet: Master, send info on UART1 permanently\nNot set: Slave, wait for command to send
+Connection ~ 5525 5125
+Wire Wire Line
+	4250 4450 4500 4450
+Wire Wire Line
+	4625 4250 4500 4250
+Wire Wire Line
+	4500 4250 4500 4450
+Connection ~ 4500 4450
+Wire Wire Line
+	4500 4450 5525 4450
+Wire Wire Line
+	5525 4450 5525 5125
+Text GLabel 4150 5725 0    50   Input ~ 0
+GPIO3
+Text GLabel 6025 6200 0    50   Input ~ 0
+GATE
+Wire Wire Line
+	5825 5925 6100 5925
+Wire Wire Line
+	6025 6200 6100 6200
+Wire Wire Line
+	6100 6200 6100 5925
+Connection ~ 6100 5925
+Wire Wire Line
+	6100 5925 6975 5925
+Text GLabel 8050 5675 0    50   Input ~ 0
+GPIO18
+Wire Wire Line
+	8050 5675 8225 5675
+Wire Wire Line
+	6725 4000 6725 5725
+Text Notes 6750 6400 0    50   ~ 0
+J5 to \npower circuit\n
+Wire Wire Line
+	4275 5725 4150 5725
+Wire Wire Line
+	3350 5950 4500 5950
+Connection ~ 4500 5950
+Wire Wire Line
+	3100 4250 3050 4250
+Wire Wire Line
+	3050 4250 3050 4450
+Wire Wire Line
+	3050 4450 3250 4450
+$Comp
+L Connector:Screw_Terminal_01x02 J11
+U 1 1 66AA4BDF
+P 2625 4575
+F 0 "J11" H 2525 4700 50  0000 L CNN
+F 1 " " H 2705 4476 50  0000 L CNN
+F 2 "" H 2625 4575 50  0001 C CNN
+F 3 "~" H 2625 4575 50  0001 C CNN
+	1    2625 4575
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J10
+U 1 1 66AA5541
+P 1225 4575
+F 0 "J10" H 1143 4792 50  0000 C CNN
+F 1 " " H 1143 4701 50  0000 C CNN
+F 2 "" H 1225 4575 50  0001 C CNN
+F 3 "~" H 1225 4575 50  0001 C CNN
+	1    1225 4575
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2425 4450 2425 4575
+Wire Wire Line
+	2425 4675 2425 4850
+Wire Wire Line
+	2675 4575 2800 4575
+Wire Wire Line
+	2800 4575 2800 4450
+Wire Wire Line
+	2800 4450 3050 4450
+Connection ~ 3050 4450
+Wire Wire Line
+	2675 4675 2800 4675
+Wire Wire Line
+	2800 4675 2800 4850
+Wire Wire Line
+	2800 4850 3225 4850
+Connection ~ 3225 4850
+Wire Wire Line
+	1425 4450 1425 4575
+Wire Wire Line
+	1425 4675 1425 4850
+Wire Wire Line
+	1175 4575 1100 4575
+Wire Wire Line
+	1100 4575 1100 4000
+Wire Wire Line
+	1100 4000 1275 4000
+Wire Wire Line
+	1225 3875 1275 3875
+Wire Wire Line
+	1275 3875 1275 4000
+Connection ~ 1275 4000
+Wire Wire Line
+	1100 5075 1100 4675
+Wire Wire Line
+	1100 4675 1175 4675
+Text Notes 1550 5100 0    50   ~ 0
+on separate board
+Wire Wire Line
+	900  5950 900  4000
+Wire Wire Line
+	900  4000 1100 4000
+Wire Wire Line
+	900  5950 2325 5950
+Connection ~ 1100 4000
+Wire Wire Line
+	1275 4000 6725 4000
+Text GLabel 4200 1200 0    50   Input ~ 0
+GPIO3
+Wire Wire Line
+	4675 1200 4200 1200
+Text Notes 3700 1225 0    50   ~ 0
+PWM\n
+Text GLabel 7900 2400 2    50   Input ~ 0
+GPIO18
+Text Notes 7950 2575 0    50   ~ 0
+VENT
+Text Notes 7800 5850 0    50   ~ 0
+VENT
+$EndSCHEMATC
