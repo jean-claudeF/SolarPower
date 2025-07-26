@@ -1,3 +1,4 @@
+#ds18x20_jc03.py
 import onewire, ds18x20
 import time
 
@@ -32,16 +33,19 @@ class TemperatureSensors():
         return self.temps
     
         
-    def get_as_string(self):
+    def get_as_string(self, tformat = '%2.1f'):
+        # tab terminated!
         temps = self.get()
+        
         s = ""
         for t in temps:
-            s += '%2.1f' % t + '\t' 
+            s += tformat % t + '\t' 
             #s += str(t) + '\t' 
         return s
+        
     
     def get_maxtemps_as_string(self):
-        
+        # tab terminated!
         s = ""
         for t in self.maxtemps:
             s += '%2.1f' % t + '\t' 
@@ -68,14 +72,14 @@ class TemperatureSensors():
         return globalalarm, alarms
     
     def print_info(self):
-        print("Temperature sensor addresses: (Family, SerialNb, CRC)")
+        print("# Temperature sensor addresses: (Family, SerialNb, CRC)")
 
         for address in self.addresses:
             family_code = address[0]
             serial_number = bytearray_to_hexstring(address[1:7])
             crc = address[7]
             
-            print(hex(family_code),  "  " , serial_number, "  ", crc  )
+            print("#", hex(family_code),  "  " , serial_number, "  ", crc  )
             
         print()          
         
@@ -110,6 +114,8 @@ if __name__ == "__main__":
         sensors.get()
         sensors.print_temps('\t\t')
         
+        s = sensors.get_as_string(tformat = '%2.0f')
+        print(s)
         
         '''
         ga, a = sensors.checktemp(25)
@@ -119,4 +125,3 @@ if __name__ == "__main__":
         time.sleep(1)
     
     
-            

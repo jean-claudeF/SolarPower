@@ -15,6 +15,8 @@ class TemperatureSensors():
             a = self.addresses[i]
             t = self.ds_sensor.read_temp(a)
         
+        
+        
     def convert(self):
         if len(self.addresses):
             self.ds_sensor.convert_temp()
@@ -67,56 +69,3 @@ class TemperatureSensors():
                 alarms.append(0)
         return globalalarm, alarms
     
-    def print_info(self):
-        print("Temperature sensor addresses: (Family, SerialNb, CRC)")
-
-        for address in self.addresses:
-            family_code = address[0]
-            serial_number = bytearray_to_hexstring(address[1:7])
-            crc = address[7]
-            
-            print(hex(family_code),  "  " , serial_number, "  ", crc  )
-            
-        print()          
-        
-#------------------------------------------------------------------
-def bytearray_to_hexstring(bytes):
-    ''' Format bytearray to reader friendly string'''
-    h = ''
-    for i in bytes:
-        
-        s = hex(i)[2:]
-        ##print(i, s)
-        if len(s) == 1:
-            s='0' + s
-        s = s.upper()
-        h += s
-
-    return h    
-#----------------------------------------------------
-
-
-if __name__ == "__main__":
-    
-    ds_pin = machine.Pin(15)
- 
-    sensors = TemperatureSensors(ds_pin)
-    sensors.print_info()
-
-    while True:
-        sensors.convert()
-        time.sleep(0.75)
-        #temps = sensors.get()
-        sensors.get()
-        sensors.print_temps('\t\t')
-        
-        
-        '''
-        ga, a = sensors.checktemp(25)
-        if ga:
-            print(a)
-        '''
-        time.sleep(1)
-    
-    
-            

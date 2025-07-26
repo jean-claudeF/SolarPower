@@ -18,7 +18,7 @@ class MPPT(Measure_VIP):
         self.pwm_max = 0.5
         self.pwm_step = 0.01
         self.powerlimit = powerlimit
-        self.powerlimit_reached = False
+        self.powerlimit_reached = 0
         
         ''' Inherited from Measure_VIP:
         self.i 
@@ -26,6 +26,8 @@ class MPPT(Measure_VIP):
         self.p 
         self.values = v, i, p
         '''
+        
+        
       
     def set_pwm(self, pwmval):
         self.pwmgen.set_pwm(pwmval)
@@ -36,6 +38,7 @@ class MPPT(Measure_VIP):
         # returns p2max, p1max, pwmopt, i1max, i2max, pwmopt
         # printflag decides if values are printed 
         ## Note: Only in this function pwm values are int in % because range is used
+       
         
         # range accepts only int, so convert to %:
         pwm_percent_min = int(self.pwm_min * 100)
@@ -50,7 +53,7 @@ class MPPT(Measure_VIP):
         pwmopt_percent = 0
         vmax = 0
         imax = 0
-        self.powerlimit_reached = False
+        self.powerlimit_reached = 0
         
         for pw in pwm_percent_range:
             
@@ -66,7 +69,7 @@ class MPPT(Measure_VIP):
                 pwmopt_percent = pw
             
             if power >= self.powerlimit:
-                self.powerlimit_reached = True
+                self.powerlimit_reached = int(power)
                 break
                 
             

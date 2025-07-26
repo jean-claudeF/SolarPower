@@ -1,3 +1,15 @@
+#ds18x20_jc04.py
+# Easy reading of any number of DS18x20 temperature sensors
+# Originally the sensors are ordered according to their addresses,
+# but it is possible to change that order with e.g. sensors.re_sort_addr([2,1,3])
+# where the array contains the indexes of the original order
+# (the index array may be smaller than the number of sensors,
+# thus allowing to use only part of the sensors)
+#
+# Overheating can be checked with e.g. ga, a = sensors.checktemp(maxtemp)
+#
+# Writing to CSV files is easy using s = sensors.get_as_string()
+
 import onewire, ds18x20
 import time
 
@@ -14,14 +26,30 @@ class TemperatureSensors():
         for i in range(0, self.nbsensors):
             a = self.addresses[i]
             t = self.ds_sensor.read_temp(a)
+            
+    def re_sort_addr(self, indexes):
+        # Reorder sensors: indexes e.g. [3, 1, 2, 0]
+        print("# Reordering ", indexes)
+        newaddresses = []
+        for i in range(0, len(indexes)):
+            n = indexes[i]
+            a = self.addresses[n]
+            newaddresses.append(a)
+        self.addresses = newaddresses
+        self.nbsensors = len(self.addresses)
         
+    def sort_addr(self):
+        # sort according to address scan
+        self.addresses = self.ds_sensor.scan()
+    
     def convert(self):
         if len(self.addresses):
             self.ds_sensor.convert_temp()
         
     def get(self):
+        # get all temperatures as array and update maxtemps
         self.temps = []
-        #for a in self.addresses:
+        
         for i in range(0, self.nbsensors):
             a = self.addresses[i]
             t = self.ds_sensor.read_temp(a)
@@ -32,20 +60,20 @@ class TemperatureSensors():
         return self.temps
     
         
-    def get_as_string(self):
+    def get_as_string(self, tformat = '%2.1f', separator = '\t'):
+        # get all temperatures as tab separated string
+        # separator can also be something else e.g. '\n'
         temps = self.get()
         s = ""
         for t in temps:
-            s += '%2.1f' % t + '\t' 
-            #s += str(t) + '\t' 
+            s += tformat % t + separator 
         return s
     
-    def get_maxtemps_as_string(self):
-        
+    def get_maxtemps_as_string(self, tformat = '%2.1f', separator = '\t'):
+        # get maximum temperatures as tab separated string
         s = ""
         for t in self.maxtemps:
-            s += '%2.1f' % t + '\t' 
-            
+            s += tformat % t + separator
         return s
     
     def print_temps(self, separator):
@@ -54,12 +82,13 @@ class TemperatureSensors():
         print()
         
     def checktemp(self, alarmtemp):
+        # returns tuple of globalaalarm (True/False) and
+        # array of 0/1 for allsensors
         alarms = []
         globalalarm = False
         temps = self.get()
         
         for t in temps:
-                       
             if t > alarmtemp:
                 alarms.append(1)
                 globalalarm = True
@@ -68,15 +97,12 @@ class TemperatureSensors():
         return globalalarm, alarms
     
     def print_info(self):
-        print("Temperature sensor addresses: (Family, SerialNb, CRC)")
-
+        print("# Temperature sensor addresses: (Family, SerialNb, CRC)")
         for address in self.addresses:
             family_code = address[0]
             serial_number = bytearray_to_hexstring(address[1:7])
             crc = address[7]
-            
-            print(hex(family_code),  "  " , serial_number, "  ", crc  )
-            
+            print("#", hex(family_code),  "  " , serial_number, "  ", crc  )
         print()          
         
 #------------------------------------------------------------------
@@ -102,21 +128,37 @@ if __name__ == "__main__":
  
     sensors = TemperatureSensors(ds_pin)
     sensors.print_info()
-
+    
+    
+    indexes = [0,2,3, 1]
+    #indexes = [3,1]
+    sensors.re_sort_addr(indexes)
+    sensors.print_info()
+    
+    
+    """
+    import sys
+    sys.exit()
+    """
+    
     while True:
         sensors.convert()
         time.sleep(0.75)
         #temps = sensors.get()
+        """
         sensors.get()
         sensors.print_temps('\t\t')
+        """
+        s = sensors.get_as_string()
+        print(s, end = '\t\t')
+        sm = sensors.get_maxtemps_as_string()
+        print(sm)  
         
         
-        '''
-        ga, a = sensors.checktemp(25)
+        ga, a = sensors.checktemp(27)
         if ga:
             print(a)
-        '''
+        
         time.sleep(1)
     
     
-            

@@ -1,0 +1,16 @@
+## Commands:
+Ctrl - C: Stop program
+Ctrl - D: Reset
+?       : Display help
+* Enter command
+
+
+
+## Variables that can be changed remotely:
+track_time = 10                       # track every xx seconds
+dt = 1                                # display every dt
+
+vent_on_temp = 45       # switch on ventilator at this temperature
+
+## Set power limit:
+set_powerlimit(limit = powerlimit)

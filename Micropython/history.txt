@@ -1,0 +1,36 @@
+
+solartrack_28		23.9.2024
+  Added: machine ID on TxD1  (defined as identity in config.py)
+  Fixed bug due to trailing '\t' at  get_maxtemps_as_string
+  
+Format of data for HA:
+UART1:
+# ID	i	  V   I   P   PWM   EWh   TMOS   TD   TL   TC2   Pmax   Powerlimit   
+  0     1   2   3    4     5     6     7    8     9     10     11   12
+------------------------------------------------------------------------
+solartrack_27.py
+Changes in: import, print_info(), print_ny_oled
+New lib for temperature sensors: ds18x20_jc03.py    (test: test_ds18x20_jc03.py)
+prints addresses in friendly form
+Now: +1 sensor for C2 (output)
+
+Format of data for HA:
+UART1:
+# i	  V   I   P   PWM   EWh   TMOS   TD   TL   TC2   Pmax   Powerlim   
+  0       1   2   3    4     5     6     7    8     9     10     11
+------------------------------------------------------------------------
+
+solartrack_26.py      3.8.2024
+Added watchdog
+solartrack_24.py       7.3.2024
+Needs Micropython >= 1.23 (self compiled 2.3.2024)
+Changed:
+blink every dt
+Class TemperatureSensors -> file temperature_sensor.py
+Removed manual PWM
+Power limit
+Global variables
+MPPT class moved to module MPPT_01.py
+Config paramters moved to config.py
+Don't print tracking values (avoid buffer overrun on receive side)
+Reduce max. power when battery voltage high
